@@ -25,79 +25,38 @@ abstract class BaseModel {
   int updateTime;
   int deleteTime;
 
-  BaseModel();
+  BaseModel({this.id});
 
-  BaseModel.fromMap(Map<String, dynamic> data) {
-    if (data == null) {
-      throw FormatException("Null JSON provided");
-    }
-
-    this.id = data['id'];
-    this.uid = data['uid'];
-    this.identifier = data['identifier'];
-    this.friendly = data['friendly'];
-    this.category = data['category'];
-    this.type = data['type'];
-    this.isVisible = (data['is_visible'] is int)
-        ? ((data['is_visible'] == 1) ? true : false)
-        : data['is_visible'];
-    this.isEnabled = (data['is_enabled'] is int)
-        ? ((data['is_enabled'] == 1) ? true : false)
-        : data['is_enabled'];
-    this.isDeleted = (data['is_deleted'] is int)
-        ? ((data['is_deleted'] == 1) ? true : false)
-        : data['is_deleted'];
-    this.sortIndex = data['sort_index'];
-    this.flags = data['flags'];
-    this.locale = data['locale'];
-    this.localId = data['local_id'];
-    this.ownerId = data['owner_id'];
-    this.userId = data['user_id'];
-    this.parentId = data['parent_id'];
-    this.ancestorId = data['ancestor_id'];
-    this.groupId = data['group_id'];
-    this.externalId = data['external_id'];
-    this.version = data['version'];
-    this.createTime = data['create_time'];
-    this.updateTime = data['update_time'];
-    this.deleteTime = data['delete_time'];
-
-    if (this.id == null || this.id.length <= 0) this.assignId();
-  }
-
-  void fromMap(Map<String, dynamic> data) {
-    if (data == null) {
-      throw FormatException("Null JSON provided");
-    }
-    this.id = data['id'];
-    this.uid = data['uid'];
-    this.identifier = data['identifier'];
-    this.friendly = data['friendly'];
-    this.category = data['category'];
-    this.type = data['type'];
-    this.isVisible = (data['is_visible'] is int)
-        ? ((data['is_visible'] == 1) ? true : false)
-        : data['is_visible'];
-    this.isEnabled = (data['is_enabled'] is int)
-        ? ((data['is_enabled'] == 1) ? true : false)
-        : data['is_enabled'];
-    this.isDeleted = (data['is_deleted'] is int)
-        ? ((data['is_deleted'] == 1) ? true : false)
-        : data['is_deleted'];
-    this.sortIndex = data['sort_index'];
-    this.flags = data['flags'];
-    this.locale = data['locale'];
-    this.localId = data['local_id'];
-    this.ownerId = data['owner_id'];
-    this.userId = data['user_id'];
-    this.parentId = data['parent_id'];
-    this.ancestorId = data['ancestor_id'];
-    this.groupId = data['group_id'];
-    this.externalId = data['external_id'];
-    this.version = data['version'];
-    this.createTime = data['create_time'];
-    this.updateTime = data['update_time'];
-    this.deleteTime = data['delete_time'];
+  BaseModel.fromMap(Map<String, dynamic> map) {
+    this.id = map['id'];
+    this.uid = map['uid'];
+    this.identifier = map['identifier'];
+    this.friendly = map['friendly'];
+    this.category = map['category'];
+    this.type = map['type'];
+    this.isVisible = (map['is_visible'] is int)
+        ? ((map['is_visible'] == 1) ? true : false)
+        : map['is_visible'];
+    this.isEnabled = (map['is_enabled'] is int)
+        ? ((map['is_enabled'] == 1) ? true : false)
+        : map['is_enabled'];
+    this.isDeleted = (map['is_deleted'] is int)
+        ? ((map['is_deleted'] == 1) ? true : false)
+        : map['is_deleted'];
+    this.sortIndex = map['sort_index'];
+    this.flags = map['flags'];
+    this.locale = map['locale'];
+    this.localId = map['local_id'];
+    this.ownerId = map['owner_id'];
+    this.userId = map['user_id'];
+    this.parentId = map['parent_id'];
+    this.ancestorId = map['ancestor_id'];
+    this.groupId = map['group_id'];
+    this.externalId = map['external_id'];
+    this.version = map['version'];
+    this.createTime = map['create_time'];
+    this.updateTime = map['update_time'];
+    this.deleteTime = map['delete_time'];
 
     if (this.id == null || this.id.length <= 0) this.assignId();
   }
