@@ -20,6 +20,7 @@ abstract class BaseModel {
   String ancestorId;
   String groupId;
   String externalId;
+  int version;
   int createTime;
   int updateTime;
   int deleteTime;
@@ -37,22 +38,29 @@ abstract class BaseModel {
     this.friendly = data['friendly'];
     this.category = data['category'];
     this.type = data['type'];
-    this.isVisible = data['isVisible'];
-    this.isEnabled = data['isEnabled'];
-    this.isDeleted = data['isDeleted'];
-    this.sortIndex = data['sortIndex'];
+    this.isVisible = (data['is_visible'] is int)
+        ? ((data['is_visible'] == 1) ? true : false)
+        : data['is_visible'];
+    this.isEnabled = (data['is_enabled'] is int)
+        ? ((data['is_enabled'] == 1) ? true : false)
+        : data['is_enabled'];
+    this.isDeleted = (data['is_deleted'] is int)
+        ? ((data['is_deleted'] == 1) ? true : false)
+        : data['is_deleted'];
+    this.sortIndex = data['sort_index'];
     this.flags = data['flags'];
     this.locale = data['locale'];
-    this.localId = data['localId'];
-    this.ownerId = data['ownerId'];
-    this.userId = data['userId'];
-    this.parentId = data['parentId'];
-    this.ancestorId = data['ancestorId'];
-    this.groupId = data['groupId'];
-    this.externalId = data['externalId'];
-    this.createTime = data['createTime'];
-    this.updateTime = data['updateTime'];
-    this.deleteTime = data['deleteTime'];
+    this.localId = data['local_id'];
+    this.ownerId = data['owner_id'];
+    this.userId = data['user_id'];
+    this.parentId = data['parent_id'];
+    this.ancestorId = data['ancestor_id'];
+    this.groupId = data['group_id'];
+    this.externalId = data['external_id'];
+    this.version = data['version'];
+    this.createTime = data['create_time'];
+    this.updateTime = data['update_time'];
+    this.deleteTime = data['delete_time'];
 
     if (this.id == null || this.id.length <= 0) this.assignId();
   }
@@ -67,52 +75,60 @@ abstract class BaseModel {
     this.friendly = data['friendly'];
     this.category = data['category'];
     this.type = data['type'];
-    this.isVisible = data['isVisible'];
-    this.isEnabled = data['isEnabled'];
-    this.isDeleted = data['isDeleted'];
-    this.sortIndex = data['sortIndex'];
+    this.isVisible = (data['is_visible'] is int)
+        ? ((data['is_visible'] == 1) ? true : false)
+        : data['is_visible'];
+    this.isEnabled = (data['is_enabled'] is int)
+        ? ((data['is_enabled'] == 1) ? true : false)
+        : data['is_enabled'];
+    this.isDeleted = (data['is_deleted'] is int)
+        ? ((data['is_deleted'] == 1) ? true : false)
+        : data['is_deleted'];
+    this.sortIndex = data['sort_index'];
     this.flags = data['flags'];
     this.locale = data['locale'];
-    this.localId = data['localId'];
-    this.ownerId = data['ownerId'];
-    this.userId = data['userId'];
-    this.parentId = data['parentId'];
-    this.ancestorId = data['ancestorId'];
-    this.groupId = data['groupId'];
-    this.externalId = data['externalId'];
-    this.createTime = data['createTime'];
-    this.updateTime = data['updateTime'];
-    this.deleteTime = data['deleteTime'];
+    this.localId = data['local_id'];
+    this.ownerId = data['owner_id'];
+    this.userId = data['user_id'];
+    this.parentId = data['parent_id'];
+    this.ancestorId = data['ancestor_id'];
+    this.groupId = data['group_id'];
+    this.externalId = data['external_id'];
+    this.version = data['version'];
+    this.createTime = data['create_time'];
+    this.updateTime = data['update_time'];
+    this.deleteTime = data['delete_time'];
 
     if (this.id == null || this.id.length <= 0) this.assignId();
   }
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMap([bool boolToInt = false]) => {
         'id': this.id,
         'uid': this.uid,
         'identifier': this.identifier,
         'friendly': this.friendly,
         'category': this.category,
         'type': this.type,
-        'isVisible': this.isVisible,
-        'isEnabled': this.isEnabled,
-        'isDeleted': this.isDeleted,
-        'sortIndex': this.sortIndex,
+        'is_visible': (boolToInt) ? (this.isVisible ? 1 : 0) : this.isVisible,
+        'is_enabled': (boolToInt) ? (this.isEnabled ? 1 : 0) : this.isEnabled,
+        'is_deleted': (boolToInt) ? (this.isDeleted ? 1 : 0) : this.isDeleted,
+        'sort_index': this.sortIndex,
         'flags': this.flags,
         'locale': this.locale,
-        'localId': this.localId,
-        'ownerId': this.ownerId,
-        'userId': this.userId,
-        'parentId': this.parentId,
-        'ancestorId': this.ancestorId,
-        'groupId': this.groupId,
-        'externalId': this.externalId,
-        'createTime': this.createTime,
-        'updateTime': this.updateTime,
-        'deleteTime': this.deleteTime
+        'local_id': this.localId,
+        'owner_id': this.ownerId,
+        'user_id': this.userId,
+        'parent_id': this.parentId,
+        'ancestor_id': this.ancestorId,
+        'group_id': this.groupId,
+        'external_id': this.externalId,
+        'version': this.version,
+        'create_time': this.createTime,
+        'update_time': this.updateTime,
+        'delete_time': this.deleteTime
       };
 
-  void assignId() {
-    this.id = Uuid().v4();
+  void assignId([bool force = false]) {
+    if (force || this.id == null || this.id.length <= 0) this.id = Uuid().v4();
   }
 }
