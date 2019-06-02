@@ -24,6 +24,7 @@ abstract class BaseModel {
   int createTime;
   int updateTime;
   int deleteTime;
+  bool dirty;
 
   BaseModel({this.id});
 
@@ -57,6 +58,7 @@ abstract class BaseModel {
     this.createTime = map['create_time'];
     this.updateTime = map['update_time'];
     this.deleteTime = map['delete_time'];
+    this.dirty = false;
 
     if (this.id == null || this.id.length <= 0) this.assignId();
   }
@@ -89,5 +91,10 @@ abstract class BaseModel {
 
   void assignId([bool force = false]) {
     if (force || this.id == null || this.id.length <= 0) this.id = Uuid().v4();
+  }
+
+  void assignIdentifier([bool force = false]) {
+    if (force || this.identifier == null || this.identifier.length <= 0)
+      this.identifier = Uuid().v4();
   }
 }
