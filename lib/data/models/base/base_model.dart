@@ -24,6 +24,7 @@ abstract class BaseModel {
   int createTime;
   int updateTime;
   int deleteTime;
+  String raw;
   bool dirty;
 
   BaseModel({this.id});
@@ -58,6 +59,7 @@ abstract class BaseModel {
     this.createTime = map['create_time'];
     this.updateTime = map['update_time'];
     this.deleteTime = map['delete_time'];
+    this.raw = map['raw'];
     this.dirty = false;
 
     if (this.id == null || this.id.length <= 0) this.assignId();
@@ -86,7 +88,8 @@ abstract class BaseModel {
         'version': this.version,
         'create_time': this.createTime,
         'update_time': this.updateTime,
-        'delete_time': this.deleteTime
+        'delete_time': this.deleteTime,
+        'raw': this.raw
       };
 
   void assignId([bool force = false]) {
